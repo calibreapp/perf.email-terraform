@@ -2,9 +2,8 @@ version: '2'
 services:
   app:
     build: .
-    command: terraform plan
+    command: terraform plan -state=/root/terraform/terraform.tfstate -var-file=/root/terraform/terraform.tfvars
     volumes:
       - .:/code
       - /root/creds/perfmatters/credentials:/root/.aws/credentials
-      - /root/creds/perfmatters/terraform.tfstate:/code/terraform.tfstate
-      - /root/creds/perfmatters/terraform.tfvars:/code/terraform.tfvars
+      - /root/creds/perfmatters/terraform:/root/terraform
