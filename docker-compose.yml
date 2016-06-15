@@ -5,4 +5,6 @@ services:
     command: terraform plan
     volumes:
       - .:/code
-      - /root/.aws:/root/.aws
+      - /root/creds/perfmatters/credentials:/root/.aws/credentials
+      - /root/creds/perfmatters/terraform.tfstate:/code/terraform.tfstate
+      - /root/creds/perfmatters/terraform.tfvars:/code/terraform.tfvars
