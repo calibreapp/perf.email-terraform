@@ -2,7 +2,7 @@
 resource "dnsimple_record" "mail_spf" {
     domain = "perf.email"
     name = "@"
-    value = "v=spf1 include:mailgun.org ~all"
+    value = "v=spf1 include:mailgun.org include:servers.mcsv.net ~all"
     type = "TXT"
     ttl = "600"
 }
@@ -39,12 +39,10 @@ resource "dnsimple_record" "mail_mx_b" {
     ttl = "600"
 }
 
-# Campaign monitor
-
-resource "dnsimple_record" "mail_cm_rsa" {
+resource "dnsimple_record" "mailchimp_cname" {
     domain = "perf.email"
-    name = "cm._domainkey"
-    value = "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9aQ/+wMGU+1cW6oGmoBl/pehkqHTNDPK3EYvrcWQuxsu9q0nMH3mNx2yrdypfvrjMCR/z4OdE+/V0f8CWOww7rL26zaQBHED9Ymi5Gu5ZY666eomjuJLs0wB9XfuIuq1ULoY3bPGXUuKPnE0A8YPgcpTL/f5UY73sWBu1b9IBpQIDAQAB"
-    type = "TXT"
-    ttl = "600"
+    name = "k1._domainkey.perf.email"
+    value = "dkim.mcsv.net"
+    type = "CNAME"
+    ttl = "3600"
 }
